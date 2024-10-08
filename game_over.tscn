@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ym8u38tkujp"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_7e46b"]
+[ext_resource type="Texture2D" uid="uid://cyu36xwwunpd6" path="res://game over.png" id="2_108sa"]
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7e46b")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -230.0
+offset_top = -6.0
+offset_right = 1423.0
+offset_bottom = 655.0
+texture = ExtResource("2_108sa")
+expand_mode = 3

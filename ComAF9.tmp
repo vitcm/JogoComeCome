@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=3 uid="uid://bcfwe4o8rodsc"]
+
+[ext_resource type="Script" path="res://comi_comi.gd" id="1_nnmei"]
+[ext_resource type="Texture2D" uid="uid://bd4dxiycv3r3d" path="res://bichinho.png" id="1_xha68"]
+[ext_resource type="PackedScene" uid="uid://d0cpyrh1cghim" path="res://sanduiche.tscn" id="2_4l6kx"]
+[ext_resource type="Script" path="res://gerenciador_sanduiche.gd" id="5_bmtf3"]
+[ext_resource type="PackedScene" uid="uid://6iaj0c1sool1" path="res://veneno.tscn" id="6_iuguj"]
+[ext_resource type="Script" path="res://gerenciador_veneno.gd" id="7_a6gdf"]
+[ext_resource type="Script" path="res://parallax_layer.gd" id="7_jmo3a"]
+[ext_resource type="Texture2D" uid="uid://dvvl81ubphssb" path="res://FUNDO INTEIRO.png" id="8_xhai5"]
+[ext_resource type="Texture2D" uid="uid://v8745cfeuft0" path="res://path_to_game_over_image.png" id="9_popvw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6luur"]
+size = Vector2(5, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd8ad"]
+size = Vector2(60, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfidl"]
+atlas = ExtResource("1_xha68")
+region = Rect2(0, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtcp1"]
+atlas = ExtResource("1_xha68")
+region = Rect2(338, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6gm1"]
+atlas = ExtResource("1_xha68")
+region = Rect2(676, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeqhq"]
+atlas = ExtResource("1_xha68")
+region = Rect2(1014, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2x3c"]
+atlas = ExtResource("1_xha68")
+region = Rect2(1352, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2syc"]
+atlas = ExtResource("1_xha68")
+region = Rect2(1690, 0, 338, 343)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7w6u"]
+atlas = ExtResource("1_xha68")
+region = Rect2(2028, 0, 338, 343)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8o21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfidl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtcp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6gm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeqhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2x3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2syc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7w6u")
+}],
+"loop": true,
+"name": &"movimento",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hjpn"]
+size = Vector2(1332, 9.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p23g2"]
+size = Vector2(1330, 11.5)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(62, 68)
+
+[node name="BarraFinal" type="StaticBody2D" parent="."]
+position = Vector2(0, 29)
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarraFinal"]
+position = Vector2(1086.5, 225)
+shape = SubResource("RectangleShape2D_6luur")
+
+[node name="Sanduiche" parent="." instance=ExtResource("2_4l6kx")]
+
+[node name="ComiComi" type="CharacterBody2D" parent="."]
+position = Vector2(1035, 70)
+collision_mask = 14
+script = ExtResource("1_nnmei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComiComi"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_vd8ad")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ComiComi"]
+position = Vector2(-2, 3)
+scale = Vector2(0.247781, 0.258382)
+sprite_frames = SubResource("SpriteFrames_t8o21")
+animation = &"movimento"
+
+[node name="Node" type="Node" parent="ComiComi/AnimatedSprite2D"]
+
+[node name="GerenciadorSanduiche" type="Node2D" parent="."]
+script = ExtResource("5_bmtf3")
+
+[node name="Veneno" parent="." instance=ExtResource("6_iuguj")]
+
+[node name="GerenciadorVeneno" type="Node2D" parent="."]
+script = ExtResource("7_a6gdf")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("7_jmo3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1786, 334)
+scale = Vector2(0.556667, 0.556667)
+texture = ExtResource("8_xhai5")
+
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(-408, 213)
+texture = ExtResource("9_popvw")
+
+[node name="BarraInferior" type="StaticBody2D" parent="."]
+position = Vector2(21, 668)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarraInferior"]
+light_mask = 8
+visibility_layer = 3
+position = Vector2(415, -94.25)
+shape = SubResource("RectangleShape2D_3hjpn")
+
+[node name="BarraSuperior" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarraSuperior"]
+light_mask = 8
+visibility_layer = 3
+position = Vector2(446, -64.75)
+shape = SubResource("RectangleShape2D_p23g2")

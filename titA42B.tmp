@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg2amhlmt0263"]
+
+[ext_resource type="Texture2D" uid="uid://cgutn7orfjy8b" path="res://iniciar.png" id="1_tc4eu"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_x68g3"]
+[ext_resource type="Script" path="res://start_btn.gd" id="3_s1lny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dowel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8lhxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvh67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6w8pu"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x68g3")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = -227.0
+offset_top = 5.0
+offset_right = 1393.0
+offset_bottom = 653.0
+texture = ExtResource("1_tc4eu")
+expand_mode = 3
+
+[node name="start_btn" type="Button" parent="bg"]
+clip_contents = true
+layout_mode = 2
+offset_left = 684.0
+offset_top = 513.0
+offset_right = 862.0
+offset_bottom = 557.0
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dowel")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8lhxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lvh67")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6w8pu")
+script = ExtResource("3_s1lny")
+
+[connection signal="pressed" from="bg/start_btn" to="." method="_on_start_btn_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://6iaj0c1sool1"]
+
+[ext_resource type="Script" path="res://veneno.gd" id="1_hlopw"]
+[ext_resource type="Texture2D" uid="uid://b55jqm3l8av7h" path="res://veneno.png" id="2_dp73y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1e"]
+size = Vector2(29, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flkvh"]
+atlas = ExtResource("2_dp73y")
+region = Rect2(0, 0, 110, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqqcb"]
+atlas = ExtResource("2_dp73y")
+region = Rect2(110, 0, 110, 116)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uaily"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flkvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqqcb")
+}],
+"loop": true,
+"name": &"movimentoVene",
+"speed": 5.0
+}]
+
+[node name="Veneno" type="CharacterBody2D"]
+script = ExtResource("1_hlopw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33.5, 33)
+shape = SubResource("RectangleShape2D_vgt1e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(30, 29)
+scale = Vector2(0.436364, 0.413793)
+sprite_frames = SubResource("SpriteFrames_uaily")
+animation = &"movimentoVene"
